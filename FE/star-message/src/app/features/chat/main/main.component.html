@@ -1,0 +1,61 @@
+<div class="chat">
+  <div class="chat-title">
+    <figure class="avatar">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" />
+    </figure>
+    <div class="chat-title__info">
+      <span class="info-name">John Kerry</span>
+      <span class="info-status">Muse VN</span>
+    </div>
+    <div class="function-group">
+      <i class="fa-solid fa-phone"></i>
+      <i class="fa-solid fa-video"></i>
+    </div>
+  </div>
+
+  <div class="messages" #chatBox>
+    <div class="messages-content">
+      <div *ngFor="let message of messages">
+        <div *ngIf="message.userId === 101" class="messages-content__me-message">
+          <div class="text-box1">
+            <span class="text-content">
+              {{ message.content }}
+            </span>
+          </div>
+        </div>
+
+        <div *ngIf="message.userId !== 101" class="messages-content__mybaby-message">
+          <div class="text-box2">
+            <figure class="avatar">
+              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" />
+            </figure>
+            <span class="text-content">
+              {{ message.content }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="babyIsTyping" class="messages-content__mybaby-message">
+        <div class="text-box2">
+          <figure class="avatar">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" />
+          </figure>
+          <div class="text-content">
+            <div class="ball-group">
+              <span class="ball"></span>
+              <span class="ball"></span>
+              <span class="ball"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="message-box">
+    <input type="text" (keyup.enter)="sendMessage()" [(ngModel)]="inputMessage" class="message-input"
+      placeholder="Type message...">
+    <button type="submit" (click)="sendMessage()" class="message-submit">Send</button>
+  </div>
+</div>
+<div class="bg"></div>

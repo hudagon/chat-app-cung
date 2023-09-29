@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:h2:file:./chat-app-be
+    platform: h2
+    username: sa
+    password: 1234
+    driverClassName: org.h2.Driver
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.H2Dialect
+      ddl-auto: update
+    show-sql: true
+  h2:
+    console:
+      enabled: true
