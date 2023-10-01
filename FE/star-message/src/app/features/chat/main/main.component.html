@@ -5,7 +5,7 @@
     </figure>
     <div class="chat-title__info">
       <span class="info-name">John Kerry</span>
-      <span class="info-status">Muse VN</span>
+      <span class="info-status">Muse 123</span>
     </div>
     <div class="function-group">
       <i class="fa-solid fa-phone"></i>
@@ -55,6 +55,14 @@
   <div class="message-box">
     <input type="text" (keyup.enter)="sendMessage()" [(ngModel)]="inputMessage" class="message-input"
       placeholder="Type message...">
+
+      <div class="emoji-box">
+        <i (click)="toggleEmojiPicker()" class="fa-regular fa-face-laugh emoji-button"></i>
+        <div class="emoji-picker" *ngIf="showEmojiPicker">
+          <emoji-mart (emojiClick)="addEmoji($event)" set="facebook"></emoji-mart>
+        </div>
+      </div>
+    
     <button type="submit" (click)="sendMessage()" class="message-submit">Send</button>
   </div>
 </div>

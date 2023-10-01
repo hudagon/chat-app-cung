@@ -10,7 +10,11 @@ import { MainComponent } from './features/chat/main/main.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RandomlyComponent } from './features/chat/randomly/randomly.component';
+import { PickerComponent } from '@ctrl/ngx-emoji-mart';
+import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
+const config: SocketIoConfig = { url: 'http://localhost:8080/websocket', options: {} };
 
 @NgModule({
   declarations: [
@@ -26,6 +30,9 @@ import { RandomlyComponent } from './features/chat/randomly/randomly.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    PickerComponent,
+    EmojiModule,
+    SocketIoModule.forRoot(config)
   ],
   providers: [],
   bootstrap: [AppComponent]

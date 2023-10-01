@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MessageBox } from 'src/app/shared/dto/message-box';
+import { RandomService } from '../../services/random.service';
+import { WebsocketService } from '../../services/websocket.service';
 
 @Component({
   selector: 'app-main',
@@ -39,12 +41,26 @@ export class MainComponent implements OnInit {
   ]
   set = 'twitter';
 
-  ngOnInit(): void {
+  constructor(
+    private websocketService: WebsocketService,
+    private randomService: RandomService
+  ) {
   }
 
+  ngOnInit(): void {
+    this.randomService.getProduct().subscribe((data) => {
+      console.log(data);
+    });
+    // this.websocketService.connect();
+
+    // this.websocketService.onMessageReceived().subscribe((data: any) => {
+    //   console.log(data);
+    // });
+  }
+ 
   toggleEmojiPicker() {
     console.log(this.showEmojiPicker);
-        this.showEmojiPicker = !this.showEmojiPicker;
+    this.showEmojiPicker = !this.showEmojiPicker;
   }
 
   addEmoji(event: any) {
@@ -63,7 +79,9 @@ export class MainComponent implements OnInit {
     if (this.inputMessage != '') {
       this.messages.push({ id: 5, content: this.inputMessage, userId: 101 });
       window.scrollY;
-  
+
+      // this.websocketService.sendMessage(this.inputMessage);
+
       this.inputMessage = '';
       this.scrollToBottom();
     }

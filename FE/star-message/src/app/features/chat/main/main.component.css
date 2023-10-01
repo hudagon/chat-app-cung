@@ -297,6 +297,7 @@ Message Box
     position: relative;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .message-box .message-input {
@@ -319,7 +320,7 @@ Message Box
     font-size: 10px;
     text-transform: uppercase;
     line-height: 1;
-    padding: 6px 10px;
+    padding: 9px 10px;
     border-radius: 21px;
     width: 60px;
     outline: none !important;
@@ -439,4 +440,26 @@ Ball animation
     100% {
         transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
     }
+}
+
+.emoji-button {
+    color: #dfdfdf;
+    font-size: 21px;
+    margin-right: 6px;
+}
+
+.emoji-box {
+    position: relative;
+}
+
+.emoji-picker {
+    position: absolute;
+    z-index: 3;
+    top: -429px;
+    left: -342px;
+}
+
+.emoji-button:hover {
+    opacity: 0.75;
+    cursor: pointer;
 }
