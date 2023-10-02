@@ -300,6 +300,13 @@ Message Box
     align-items: center;
 }
 
+.emoji-box {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .message-box .message-input {
     background: none;
     border: none;

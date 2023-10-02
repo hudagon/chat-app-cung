@@ -1,11 +1,11 @@
 <div class="chat">
   <div class="chat-title">
     <figure class="avatar">
-      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" />
+      <img src={{currentUserInfo.url}} />
     </figure>
     <div class="chat-title__info">
-      <span class="info-name">John Kerry</span>
-      <span class="info-status">Muse 123</span>
+      <span class="info-name">{{currentUserInfo.name}}</span>
+      <span class="info-status">{{currentUserInfo.status}}</span>
     </div>
     <div class="function-group">
       <i class="fa-solid fa-phone"></i>
@@ -16,7 +16,7 @@
   <div class="messages" #chatBox>
     <div class="messages-content">
       <div *ngFor="let message of messages">
-        <div *ngIf="message.userId === 101" class="messages-content__me-message">
+        <div *ngIf="message.userId === mainUserId" class="messages-content__me-message">
           <div class="text-box1">
             <span class="text-content">
               {{ message.content }}
@@ -24,10 +24,10 @@
           </div>
         </div>
 
-        <div *ngIf="message.userId !== 101" class="messages-content__mybaby-message">
+        <div *ngIf="message.userId === subUserId" class="messages-content__mybaby-message">
           <div class="text-box2">
             <figure class="avatar">
-              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" />
+              <img src={{currentUserInfo.url}} />
             </figure>
             <span class="text-content">
               {{ message.content }}
@@ -36,10 +36,10 @@
         </div>
       </div>
 
-      <div *ngIf="babyIsTyping" class="messages-content__mybaby-message">
+      <div *ngIf="isTypingFlag" class="messages-content__mybaby-message">
         <div class="text-box2">
           <figure class="avatar">
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" />
+            <img src={{currentUserInfo.url}} />
           </figure>
           <div class="text-content">
             <div class="ball-group">
@@ -53,16 +53,16 @@
     </div>
   </div>
   <div class="message-box">
-    <input type="text" (keyup.enter)="sendMessage()" [(ngModel)]="inputMessage" class="message-input"
+    <input type="text" (keyup)="isTyping()" (keyup.enter)="sendMessage()" [(ngModel)]="inputMessage" class="message-input"
       placeholder="Type message...">
 
-      <div class="emoji-box">
-        <i (click)="toggleEmojiPicker()" class="fa-regular fa-face-laugh emoji-button"></i>
-        <div class="emoji-picker" *ngIf="showEmojiPicker">
-          <emoji-mart (emojiClick)="addEmoji($event)" set="facebook"></emoji-mart>
-        </div>
+    <div class="emoji-box">
+      <i (click)="toggleEmojiPicker()" class="fa-regular fa-face-laugh emoji-button"></i>
+      <div class="emoji-picker" *ngIf="showEmojiPicker">
+        <emoji-mart (emojiClick)="addEmoji($event)" set="facebook"></emoji-mart>
       </div>
-    
+    </div>
+
     <button type="submit" (click)="sendMessage()" class="message-submit">Send</button>
   </div>
 </div>

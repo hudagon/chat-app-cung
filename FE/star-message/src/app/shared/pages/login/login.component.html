@@ -1,1 +1,36 @@
-<p>login works!</p>
+<div class="container">
+    <div class="login-box">
+        <div class="login-box__header">
+            <span class="login-box__header-title">Login Here</span>
+        </div>
+        <div class="login-box__body">
+            <div class="login-box__body-input-group">
+                <label for="username" class="input-group__label">Username: </label>
+                <input [(ngModel)]="username" type="text" class="input-group__input" placeholder="username..." id="username">
+            </div>
+            <div class="login-box__body-input-group">
+                <label for="password" class="input-group__label">Password</label>
+                <input [(ngModel)]="password" type="password" class="input-group__input" placeholder="password..." id="password">
+            </div>
+        </div>
+        <div class="login-box__footer">
+            <button (click)="login()" class="btn btn-large">
+                <div>Login</div>
+            </button>
+            <div class="fancy-text-group">
+                <div class="left-line"></div>
+                <span class="fancy-text">Or login by</span>
+                <div class="right-line"></div>
+            </div>
+            <div class="login-box__footer-oauth2">
+                <button class="btn btn-medium google">
+                    <i class="fa-brands fa-google"></i>
+                </button>
+                <button class="btn btn-medium facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg"></div>
